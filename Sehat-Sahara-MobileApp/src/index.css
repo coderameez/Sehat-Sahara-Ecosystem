@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Reset: kill all default margin/padding and default scroll */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F8FAFC;
+  }
+}
+
+/* Mobile-specific overrides if needed */
+@media (max-width: 767px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    background-color: #F8FAFC;
+  }
+
+  #root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+}
+
+/* Desktop-specific overrides if needed */
+@media (min-width: 768px) {
+  body, #root {
+    background-color: #EFF1F3;
+  }
+}
+
+/* ─── Scrollbar styles for the inner app scroll region ─── */
+.app-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+.app-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));
+  }
+  .pt-safe {
+    padding-top: max(14px, calc(env(safe-area-inset-top, 0px) + 12px));
+  }
+}
+
+@media (min-width: 768px) {
+  .pt-safe {
+    padding-top: 14px;
+  }
+  .pb-safe {
+    padding-bottom: 12px;
+  }
+}
+

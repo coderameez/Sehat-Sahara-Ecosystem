@@ -1,0 +1,160 @@
+/* MobileAppShell Styles — Sehat Sahara */
+
+/* ─── Mobile (<768px or viewport widths <= 430px): Full-screen edge-to-edge ─── */
+.sehat-app-root {
+  width: 100%;
+  height: 100dvh;
+  background-color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.sehat-app-device-frame {
+  width: 100%;
+  height: 100dvh;
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sehat-app-status-bar,
+.sehat-app-home-indicator,
+.sehat-app-dynamic-island {
+  display: none;
+}
+
+.sehat-app-content {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* ─── Desktop (≥768px): Strictly proportioned portrait phone frame ─── */
+@media (min-width: 768px) {
+  .sehat-app-root {
+    background-color: #EFF1F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .sehat-app-device-frame {
+    /*
+     * Desktop ratio derived from available viewport height.
+     * Prevents wide tablet distortion at short heights while keeping phone ratio.
+     */
+    height: min(844px, calc(100dvh - 24px));
+    aspect-ratio: 390 / 844;
+    width: auto;
+    max-width: min(430px, calc(100vw - 16px));
+    flex-shrink: 0;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+
+    border: 8px solid #1C1C1E;
+    border-radius: 44px;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 24px 48px -12px rgba(0, 0, 0, 0.35),
+      0 12px 24px -8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  .sehat-app-status-bar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 4px;
+    background-color: #ffffff;
+    user-select: none;
+    z-index: 50;
+    height: 40px;
+  }
+
+  .sehat-app-dynamic-island {
+    display: block;
+    width: 88px;
+    height: 20px;
+    background-color: #000000;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 9px;
+  }
+
+  .sehat-app-home-indicator {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0 8px;
+    background-color: #ffffff;
+    border-top: 1px solid #F1F5F9;
+    user-select: none;
+    z-index: 50;
+    height: 24px;
+  }
+
+  .sehat-app-content {
+    flex: 1 1 0%;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* ─── Short screens (≤768px height on desktop) ─── */
+@media (min-width: 768px) and (max-height: 768px) {
+  .sehat-app-root {
+    padding: 6px;
+  }
+
+  .sehat-app-device-frame {
+    height: calc(100dvh - 12px);
+    aspect-ratio: 390 / 844;
+    width: auto;
+    border-width: 6px;
+    border-radius: 36px;
+  }
+
+  .sehat-app-status-bar {
+    height: 30px;
+    padding: 4px 14px 2px;
+  }
+
+  .sehat-app-dynamic-island {
+    width: 76px;
+    height: 16px;
+    top: 6px;
+  }
+
+  .sehat-app-home-indicator {
+    height: 18px;
+    padding: 2px 0 4px;
+  }
+}

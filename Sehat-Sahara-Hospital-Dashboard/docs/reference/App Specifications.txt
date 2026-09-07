@@ -1,0 +1,84 @@
+# SEHAT SAHARA — HOSPITAL & CLINIC DASHBOARD SPECIFICATION
+
+You are building the standalone Hospital & Clinic Web Dashboard for "Sehat Sahara".
+This application must look, feel, and function as an organic part of the existing Sehat Sahara health ecosystem.
+
+## 1. TECH STACK
+- Framework: React 18 (SPA) with TypeScript 5
+- Build Tool: Vite
+- Routing: react-router-dom v6
+- Styling: Tailwind CSS v3 + Vanilla CSS reset
+- Utilities: clsx, tailwind-merge
+- Icons: lucide-react
+- Font: Inter (via Google Fonts: 400, 500, 600, 700)
+- State: Singleton Observable Store with subscribe/getSnapshot pattern + localStorage persistence
+
+## 2. EXACT COLOR PALETTE
+- brand-50:  #EBF5EF (light green wash)
+- brand-100: #D1EBD9
+- brand-200: #A3D7B3
+- brand-300: #75C38D
+- brand-400: #47AF67
+- brand-500: #1E9B46 (bright verified/success green)
+- brand-600: #166B32 (primary action green — buttons, active nav, primary accents)
+- brand-700: #0D5226 (deep headers, heavy emphasis)
+- brand-800: #073D1B
+- brand-900: #032910
+- sos-50:    #FFF1F2
+- sos-100:   #FFE1E3
+- sos-500:   #E6192B
+- sos-600:   #C8121F (critical actions, alerts)
+- warning-50:  #FFFBEB
+- warning-100: #FEF3C7
+- warning-500: #F59E0B (pending states, ratings)
+- warning-600: #D97706
+- surface-white:   #FFFFFF (cards, sidebars, headers)
+- surface-page:    #F8FAFC (slate-50 page background)
+- surface-section: #F1F5F9 (slate-100 segment tracks, table header fills)
+- surface-border:  #E2E8F0 (slate-200 default borders)
+- text-primary:   #0F172A (slate-900)
+- text-secondary: #475569 (slate-600)
+- text-muted:     #94A3B8 (slate-400)
+- text-disabled:  #CBD5E1 (slate-300)
+
+## 3. RADII & SHADOWS
+- Radii:
+  - Pills, Chips, Buttons: rounded-full (9999px)
+  - Inputs, Selects, Dropdowns: rounded-xl (12px)
+  - Standard Dashboard Cards: rounded-xl (16px)
+  - Large Hero / KPI Banner: rounded-2xl (20px)
+  - Modals / Slide-overs: rounded-3xl (24px)
+- Shadows:
+  - Card: 0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.04)
+  - Card Hover: 0 4px 12px -2px rgba(0,0,0,0.08), 0 2px 6px -1px rgba(0,0,0,0.04)
+  - Elevated Modal: 0 8px 20px -4px rgba(0,0,0,0.10), 0 4px 8px -2px rgba(0,0,0,0.05)
+  - Input Focus Ring: 0 0 0 3px rgba(22,107,50,0.15)
+
+## 4. BRAND ASSETS & LOGO USAGE
+- Assets in /public/brand/:
+  - Header logo: /brand/sehat-sahara-logo-header.png
+  - Transparent emblem: /brand/sehat-sahara-logo-transparent.png
+- Rules: Never recolor, crop, distort, or recreate logo in SVG. Keep aspect ratio via height: auto.
+- Wordmark (if typed): "Sehat Sahara" (Bold brand-700) with Urdu subtitle "صحت سہارا" (Medium brand-600, dir="rtl").
+
+## 5. DASHBOARD LAYOUT & COMPONENT STANDARDS
+- Sidebar: Fixed 260px width, bg-white, border-r border-surface-border. Active item: bg-brand-50 text-brand-700 font-bold with brand-600 active accent bar or icon.
+- Header: Sticky h-16, bg-white, border-b border-surface-border, px-6. Displays facility branch switcher, search, notifications bell with unread dot, and hospital staff profile avatar.
+- Main Canvas: bg-surface-page (#F8FAFC), min-h-screen, p-6 space-y-6.
+- Buttons: Pill shaped (rounded-full), h-10 px-5 text-sm font-semibold. Primary variant: bg-brand-600 text-white hover:bg-brand-700 shadow-sm. Secondary: bg-surface-section text-slate-700 hover:bg-slate-200.
+- Inputs: h-11, rounded-xl, bg-white, border border-surface-border, focus:ring-2 focus:ring-brand-600/15 focus:border-brand-600 text-sm.
+- Badges: rounded-full font-semibold px-2.5 py-1 text-xs:
+  - Verified / Confirmed / Completed: bg-emerald-50 text-emerald-700 border border-emerald-200
+  - Pending / In Queue / Awaiting: bg-amber-50 text-amber-700 border border-amber-200
+  - Emergency / Cancelled / Urgent: bg-rose-50 text-rose-700 border border-rose-200
+  - Neutral: bg-slate-100 text-slate-600 border border-slate-200
+- Tables: bg-white rounded-xl border border-surface-border shadow-card overflow-hidden. Headers: text-[11px] font-bold text-slate-400 uppercase tracking-wider py-3 px-4 bg-surface-section/50. Rows: border-b border-surface-border hover:bg-slate-50/70 transition-colors.
+
+## 6. DATA MODELS TO SUPPORT
+- Facility (id, name, type: "HOSPITAL" | "CLINIC", logoUrl, branches)
+- Branch (id, name, address, departments, services, doctors, hours, tokenSupport)
+- QueueToken (id, patientId, patientName, tokenNumber, departmentId, status: "WAITING" | "CALLED" | "COMPLETED", issuedAt)
+- Booking (id, patientId, providerId, facilityId, careType, scheduledDate, scheduledTime, status, fee)
+- Provider (id, name, specialty, qualification, providerType, verificationStatus)
+
+ 
